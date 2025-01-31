@@ -16,5 +16,5 @@ function calculate() {
 
 function validateInput() {
     let display = document.getElementById("display");
-    display.value = display.value.replace(/[^0-9+\-*/.]/g, ''); // Allow only numbers & operators
+    display.value = display.value.replace(/[^0-9+\-*/.]/g, ''); 
 }
