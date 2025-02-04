@@ -6,16 +6,30 @@ function clearDisplay() {
     document.getElementById("display").value = "";
 }
 
+function backspace() {
+    let display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
+
 function calculate() {
     try {
-        document.getElementById("display").value = eval(document.getElementById("display").value);
+        let result = eval(document.getElementById("display").value);
+        document.getElementById("display").value = result;
     } catch {
         document.getElementById("display").value = "Error";
     }
 }
 
-function validateInput() {
-    let display = document.getElementById("display");
-    display.value = display.value.replace(/[^0-9+\-*/.]/g, ''); 
-    
-}
+// Keyboard support
+document.addEventListener("keydown", function(event) {
+    let key = event.key;
+    if (/[\d+\-*/().]/.test(key)) {
+        appendToDisplay(key);
+    } else if (key === "Enter") {
+        calculate();
+    } else if (key === "Backspace") {
+        backspace();
+    } else if (key === "Escape") {
+        clearDisplay();
+    }
+});
